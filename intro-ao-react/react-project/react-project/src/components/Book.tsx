@@ -1,10 +1,7 @@
+import { BookTypes } from '../types/bookTypes';
+
 type BookProps = {
-  book: {
-    title: string;
-    pages: number;
-    isRead: boolean;
-    isFavorite: boolean;
-  }
+  book: BookTypes;
 };
 
 function Book({ book }: BookProps) {

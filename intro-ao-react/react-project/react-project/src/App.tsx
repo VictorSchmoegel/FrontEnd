@@ -1,48 +1,66 @@
 import './App.css';
+import React, { useState } from 'react';
 import Book from './components/Book';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Title from './components/Title';
-
-const booksList = [
-  {
-    title: 'Harry Potter',
-    pages: 300,
-    isRead: true,
-    isFavorite: false,
-  },
-  {
-    title: 'Senhor dos Anéis',
-    pages: 500,
-    isRead: false,
-    isFavorite: true,
-  },
-  {
-    title: 'Percy Jackson',
-    pages: 400,
-    isRead: true,
-    isFavorite: true,
-  },
-  {
-    title: 'As Crônicas de Gelo e Fogo',
-    pages: 1000,
-    isRead: false,
-    isFavorite: false,
-  },
-];
+import { BookTypes } from './types/bookTypes';
 
 function App() {
+  const [bookTitle, setBookTitle] = useState('');
+  const [booksPages, setBooksPages] = useState('');
+  const [books, setBooks] = useState<BookTypes[]>([]);
+
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setBookTitle(event.target.value);
+  };
+
+  const handlePagesChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setBooksPages(event.target.value);
+  };
+
+  const handleAddBook = () => {
+    const newBook = {
+      title: bookTitle,
+      pages: Number(booksPages),
+      isRead: false,
+      isFavorite: false,
+    };
+    setBooks([...books, newBook]);
+  };
+
   return (
     <div>
-      <Header />
-      <Title>
-        Meus livros
-      </Title>
-      <ul>
-        {booksList.map((book) => (
-          <Book key={ book.title } book={ book } />
-        ))}
-      </ul>
+      <div>
+        <Header />
+        <Title>
+          Meus livros
+        </Title>
+        <ul>
+          {books.map((book) => (
+            <Book key={ book.title } book={ book } />
+          ))}
+        </ul>
+        <div>
+          <input
+            type="text"
+            placeholder="Título"
+            value={ bookTitle }
+            onChange={ handleNameChange }
+          />
+          <input
+            type="number"
+            placeholder="Quantidade de páginas"
+            value={ booksPages }
+            onChange={ handlePagesChange }
+          />
+          <button
+            onClick={ handleAddBook }
+          >
+            Adicionar
+          </button>
+        </div>
+      </div>
       <Footer />
     </div>
   );
