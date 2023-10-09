@@ -1,9 +1,15 @@
-function User() {
-  const firstName = 'Victor';
-  const lastName = 'Schmoegel';
+type UserProps = {
+  user: {
+    firstName: string;
+    lastName: string;
+  }
+};
 
+function User({ user }: UserProps) {
   return (
-    <span>{`${firstName} ${lastName}`}</span>
+    <span>
+      {`${user.firstName} ${user.lastName}`}
+    </span>
   );
 }
 

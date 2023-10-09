@@ -6,7 +6,12 @@ function Header() {
       <h1>
         Olá
         {' '}
-        <User />
+        <User
+          user={ {
+            firstName: 'Victor',
+            lastName: 'Schmoegel',
+          } }
+        />
       </h1>
     </header>
   );

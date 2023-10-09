@@ -5,7 +5,14 @@ function Footer() {
     <footer>
       Acessando como
       {' '}
-      <strong><User /></strong>
+      <strong>
+        <User
+          user={ {
+            firstName: 'Victor',
+            lastName: 'Schmoegel',
+          } }
+        />
+      </strong>
     </footer>
   );
 }
