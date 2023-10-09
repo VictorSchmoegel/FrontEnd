@@ -10,6 +10,7 @@ function App() {
   const [bookTitle, setBookTitle] = useState('');
   const [booksPages, setBooksPages] = useState('');
   const [books, setBooks] = useState<BookTypes[]>([]);
+  const [name, setName] = useState('');
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setBookTitle(event.target.value);
@@ -29,6 +30,10 @@ function App() {
     setBooks([...books, newBook]);
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
   return (
     <div>
       <div>
@@ -42,23 +47,25 @@ function App() {
           ))}
         </ul>
         <div>
-          <input
-            type="text"
-            placeholder="Título"
-            value={ bookTitle }
-            onChange={ handleNameChange }
-          />
-          <input
-            type="number"
-            placeholder="Quantidade de páginas"
-            value={ booksPages }
-            onChange={ handlePagesChange }
-          />
-          <button
-            onClick={ handleAddBook }
-          >
-            Adicionar
-          </button>
+          <form onSubmit={ handleSubmit }>
+            <input
+              type="text"
+              placeholder="Título"
+              value={ bookTitle }
+              onChange={ handleNameChange }
+            />
+            <input
+              type="number"
+              placeholder="Quantidade de páginas"
+              value={ booksPages }
+              onChange={ handlePagesChange }
+            />
+            <button
+              onClick={ handleAddBook }
+            >
+              Adicionar
+            </button>
+          </form>
         </div>
       </div>
       <Footer />
